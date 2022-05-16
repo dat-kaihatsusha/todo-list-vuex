@@ -1,5 +1,6 @@
 <template>
   <div class="todo-list">
+    <TodoForm/>
     <ul v-if="auth.isAuthenticated">
       <li
           v-for="todo in todos"
@@ -8,6 +9,7 @@
       >
         {{ todo.title }}
         <input type="checkbox" :checked="todo.completed" @change="MARK_COMPLETED(todo.id)">
+        <button @click="deleteTodo(todo.id)">Delete</button>
       </li>
     </ul>
     <p v-else style="text-align: center">Not authorised</p>
@@ -15,16 +17,29 @@
 </template>
 
 <script>
-import {mapMutations, mapState} from 'vuex'
+import {mapMutations, mapState,mapActions} from 'vuex'
+import TodoForm from "@/components/TodoForm";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Todos',
+  components: {
+    TodoForm
+  },
   computed: mapState(['todos', 'auth']),
+  created() {
+    this.getTodos()
+  },
   mounted() {
     console.log('isAuthenticated: ', this.$store.state.auth.isAuthenticated)
   },
-  methods: mapMutations(['MARK_COMPLETED'])
+  methods: {
+    ...mapMutations(['MARK_COMPLETED']),
+    /*deleteTodo(todoId) {
+      this.$store.dispatch('deleteTodo', todoId)
+    }*/
+    ...mapActions(['deleteTodo', 'getTodos'])
+  }
 }
 </script>
 
@@ -66,5 +81,8 @@ export default {
 
 .todo-list li.completed {
   background: rgb(119, 218, 243);
+}
+.todo-list{
+  background: rgb(240, 240, 240);
 }
 </style>
