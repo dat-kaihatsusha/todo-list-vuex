@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Navbar/>
+    <Todos/>
+    <StatusBar/>
+    <ProgressBar/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+import Todos from "@/components/Todos";
+import Navbar from "@/components/Navbar";
+import StatusBar from "@/components/StatusBar";
+import ProgressBar from "@/components/ProgressBar";
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ProgressBar,
+    StatusBar,
+    Navbar,
+    Todos
   }
 }
 </script>
@@ -21,8 +29,9 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background: rgb(219, 219, 219);
+  margin: 20px auto;
+  width: 90%;
+  max-width: 800px;
 }
 </style>
