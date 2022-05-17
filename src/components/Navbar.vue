@@ -4,7 +4,7 @@
     <ul>
       <li>Home</li>
       <li>About</li>
-      <li v-if="auth.isAuthenticated">Total todos: <b>{{ todos.length }}</b>
+      <li v-if="auth.isAuthenticated">Total todos: <b>{{ todos.length }}</b>&nbsp;
         <button @click="TOGGLE_AUTH">Logout</button>
       </li>
       <button v-else @click="TOGGLE_AUTH">Login</button>
